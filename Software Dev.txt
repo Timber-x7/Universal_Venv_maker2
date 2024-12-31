@@ -1,0 +1,12 @@
+Project_Name/
+├── src/
+│   ├── components/
+│   ├── services/
+│   ├── utils/
+│   └── assets/
+├── tests/
+├── docs/
+├── config/
+├── build/
+├── node_modules/
+└── public/

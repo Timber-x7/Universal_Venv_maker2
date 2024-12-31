@@ -1,0 +1,28 @@
+Project_Name/
+├── Project_Management/
+│   ├── 01_Initiation/
+│   ├── 02_Planning/
+│   ├── 03_Execution/
+│   ├── 04_Monitoring_and_Control/
+│   ├── 05_Closing/
+│   ├── Documents/
+│   │   ├── Contracts/
+│   │   ├── Reports/
+│   │   └── Meeting_Minutes/
+│   ├── Financials/
+│   ├── Communication/
+│   ├── Risk_Management/
+│   └── Stakeholder_Management/
+├── Software_Development/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── assets/
+│   ├── tests/
+│   ├── docs/
+│   ├── config/
+│   ├── build/
+│   └── public/
+├── README.md
+└── .gitignore

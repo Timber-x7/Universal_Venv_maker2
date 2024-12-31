@@ -1,0 +1,157 @@
+2024-12-31 10:11:28,888 - INFO - File structures loaded successfully
+2024-12-31 10:11:28,945 - DEBUG - Structure selected: Software Development
+2024-12-31 10:11:28,945 - DEBUG - Structure tab created successfully
+2024-12-31 10:11:28,949 - INFO - Application initialized successfully
+2024-12-31 10:29:16,080 - DEBUG - Structure selected: Project Management
+2024-12-31 10:29:20,698 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:30:56,006 - INFO - Starting project creation
+2024-12-31 10:30:56,009 - INFO - Creating directory structure
+2024-12-31 10:30:56,009 - INFO - Using structure template: Development with PM
+2024-12-31 10:30:56,018 - INFO - Setting up virtual environment
+2024-12-31 10:31:14,629 - INFO - Initializing git repository
+2024-12-31 10:31:14,920 - DEBUG - Creating .gitignore
+2024-12-31 10:31:14,926 - INFO - Configuring development tools
+2024-12-31 10:31:14,926 - DEBUG - Setting up Poetry
+2024-12-31 10:31:15,032 - ERROR - Failed to create project: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 910, in create_project_thread
+    self.setup_poetry(project_path)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 801, in setup_poetry
+    subprocess.run(['poetry', 'init',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+                  '--name', self.name_entry.get(),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+                  '--no-interaction'],
+                  ^^^^^^^^^^^^^^^^^^^^
+                  cwd=project_path)
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\subprocess.py", line 1036, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\subprocess.py", line 1548, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2024-12-31 10:33:08,918 - INFO - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:33:08,920 - INFO - File structures loaded successfully
+2024-12-31 10:33:09,024 - DEBUG - Structure selected: Software Development
+2024-12-31 10:33:09,024 - DEBUG - Structure tab created successfully
+2024-12-31 10:33:09,028 - INFO - Application initialized successfully
+2024-12-31 10:33:56,207 - INFO - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:33:56,210 - INFO - File structures loaded successfully
+2024-12-31 10:33:56,288 - DEBUG - Structure selected: Software Development
+2024-12-31 10:33:56,290 - DEBUG - Structure tab created successfully
+2024-12-31 10:33:56,294 - INFO - Application initialized successfully
+2024-12-31 10:33:58,422 - INFO - Base directory: C:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:33:58,424 - INFO - File structures loaded successfully
+2024-12-31 10:33:58,512 - DEBUG - Structure selected: Software Development
+2024-12-31 10:33:58,512 - DEBUG - Structure tab created successfully
+2024-12-31 10:33:58,518 - INFO - Application initialized successfully
+2024-12-31 10:34:47,771 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:34:54,916 - DEBUG - Structure selected: Project Management
+2024-12-31 10:34:56,445 - DEBUG - Structure selected: Software Development
+2024-12-31 10:34:58,287 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:35:02,905 - INFO - Starting project creation
+2024-12-31 10:35:02,909 - INFO - Creating directory structure
+2024-12-31 10:35:02,910 - INFO - Using structure template: Development with PM
+2024-12-31 10:35:02,914 - INFO - Setting up virtual environment
+2024-12-31 10:35:25,511 - INFO - Initializing git repository
+2024-12-31 10:35:25,636 - DEBUG - Creating .gitignore
+2024-12-31 10:35:25,640 - INFO - Configuring development tools
+2024-12-31 10:35:25,641 - DEBUG - Setting up Poetry
+2024-12-31 10:35:25,704 - ERROR - Failed to create project: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 763, in create_project_thread
+    self.setup_poetry(project_path)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 654, in setup_poetry
+    subprocess.run(['poetry', 'init',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+                  '--name', self.name_entry.get(),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+                  '--no-interaction'],
+                  ^^^^^^^^^^^^^^^^^^^^
+                  cwd=project_path)
+                  ^^^^^^^^^^^^^^^^^
+  File "c:\Program Files\Python313\Lib\subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Program Files\Python313\Lib\subprocess.py", line 1036, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Program Files\Python313\Lib\subprocess.py", line 1548, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+  File "c:\Users\Brent.Chadwell\.windsurf\extensions\ms-python.debugpy-2024.14.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydev_bundle\pydev_monkey.py", line 911, in new_CreateProcess
+    return getattr(_subprocess, original_name)(app_name, cmd_line, *args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2024-12-31 10:36:26,669 - INFO - Base directory: C:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:36:26,671 - INFO - File structures loaded successfully
+2024-12-31 10:36:26,752 - DEBUG - Structure selected: Software Development
+2024-12-31 10:36:26,752 - DEBUG - Structure tab created successfully
+2024-12-31 10:36:26,755 - INFO - Application initialized successfully
+2024-12-31 10:36:39,474 - INFO - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:36:39,476 - INFO - File structures loaded successfully
+2024-12-31 10:36:39,547 - DEBUG - Structure selected: Software Development
+2024-12-31 10:36:39,548 - DEBUG - Structure tab created successfully
+2024-12-31 10:36:39,552 - INFO - Application initialized successfully
+2024-12-31 10:36:43,439 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:36:45,040 - DEBUG - Structure selected: Project Management
+2024-12-31 10:36:45,652 - DEBUG - Structure selected: Software Development
+2024-12-31 10:37:02,037 - INFO - Base directory: C:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:37:02,073 - INFO - File structures loaded successfully
+2024-12-31 10:37:02,115 - DEBUG - Structure selected: Software Development
+2024-12-31 10:37:02,115 - DEBUG - Structure tab created successfully
+2024-12-31 10:37:02,119 - INFO - Application initialized successfully
+2024-12-31 10:37:04,990 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:37:06,987 - DEBUG - Structure selected: Project Management
+2024-12-31 10:37:07,995 - DEBUG - Structure selected: Software Development
+2024-12-31 10:37:08,785 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:37:17,773 - INFO - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:37:17,776 - INFO - File structures loaded successfully
+2024-12-31 10:37:17,849 - DEBUG - Structure selected: Software Development
+2024-12-31 10:37:17,850 - DEBUG - Structure tab created successfully
+2024-12-31 10:37:17,856 - INFO - Application initialized successfully
+2024-12-31 10:37:20,862 - DEBUG - Structure selected: Software Development
+2024-12-31 10:37:21,310 - DEBUG - Structure selected: Project Management
+2024-12-31 10:37:21,896 - DEBUG - Structure selected: Development with PM
+2024-12-31 10:38:11,320 - INFO - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2024-12-31 10:38:11,321 - INFO - File structures loaded successfully
+2024-12-31 10:38:11,425 - DEBUG - Structure selected: Software Development
+2024-12-31 10:38:11,425 - DEBUG - Structure tab created successfully
+2024-12-31 10:38:11,437 - INFO - Application initialized successfully
