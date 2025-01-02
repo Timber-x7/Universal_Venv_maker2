@@ -1,0 +1,38 @@
+# Core dependencies
+tkinter  # Usually comes with Python, but listed for documentation
+
+# Testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0  # For test coverage reporting
+
+# Type checking
+mypy>=1.0.0
+types-setuptools>=67.0.0
+
+# Development tools
+black>=23.0.0  # Code formatting
+isort>=5.12.0  # Import sorting
+flake8>=6.0.0  # Code linting
+pre-commit>=3.0.0  # Pre-commit hooks
+
+# Project management
+poetry>=1.4.0  # Dependency management
+pip>=23.0.0  # Package installer
+
+# Security and analysis
+bandit>=1.7.0  # Security checks
+safety>=2.3.0  # Dependency security checks
+
+# Documentation
+sphinx>=6.0.0  # Documentation generator
+sphinx-rtd-theme>=1.2.0  # Documentation theme
+
+# Optional dependencies (uncomment as needed)
+# pandas>=2.0.0  # For data science template
+# numpy>=1.24.0  # For data science template
+# scikit-learn>=1.2.0  # For data science template
+# jupyter>=1.0.0  # For data science template
+# matplotlib>=3.7.0  # For data science template
+
+# Development environment
+python-dotenv>=1.0.0  # Environment variable management

@@ -1,0 +1,63 @@
+2025-01-02 08:30:35,888 - VenvCreator - INFO - __init__:72 - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2025-01-02 08:30:35,994 - VenvCreator - INFO - load_file_structures:158 - File structures loaded successfully
+2025-01-02 08:30:36,074 - VenvCreator - ERROR - __init__:127 - Failed to initialize application: 'EnhancedProjectCreator' object has no attribute 'categories'
+Traceback (most recent call last):
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 110, in __init__
+    self.create_templates_tab()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\_BC_Offline Programming Projects\Universal_Venv_maker2\venv-creator 6.py", line 310, in create_templates_tab
+    self.category_dropdown['values'] = list(self.categories.keys())
+                                            ^^^^^^^^^^^^^^^
+AttributeError: 'EnhancedProjectCreator' object has no attribute 'categories'
+2025-01-02 08:33:46,042 - VenvCreator - INFO - __init__:72 - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2025-01-02 08:33:46,051 - VenvCreator - INFO - load_file_structures:158 - File structures loaded successfully
+2025-01-02 08:33:46,177 - VenvCreator - DEBUG - generate_structure_preview:505 - Generated preview for Software Development:
+
+2025-01-02 08:33:46,182 - VenvCreator - DEBUG - on_structure_select:483 - Structure selected: Software Development
+2025-01-02 08:33:46,186 - VenvCreator - DEBUG - on_structure_select:484 - Preview text: 
+2025-01-02 08:33:46,188 - VenvCreator - DEBUG - create_structure_tab:455 - Structure tab created successfully
+2025-01-02 08:33:46,199 - VenvCreator - INFO - __init__:125 - Application initialized successfully
+2025-01-02 08:37:20,674 - VenvCreator - DEBUG - generate_structure_preview:505 - Generated preview for Project Management:
+
+2025-01-02 08:37:20,675 - VenvCreator - DEBUG - on_structure_select:483 - Structure selected: Project Management
+2025-01-02 08:37:20,676 - VenvCreator - DEBUG - on_structure_select:484 - Preview text: 
+2025-01-02 08:37:21,683 - VenvCreator - DEBUG - generate_structure_preview:505 - Generated preview for Development with PM:
+
+2025-01-02 08:37:21,684 - VenvCreator - DEBUG - on_structure_select:483 - Structure selected: Development with PM
+2025-01-02 08:37:21,684 - VenvCreator - DEBUG - on_structure_select:484 - Preview text: 
+2025-01-02 08:37:41,666 - VenvCreator - INFO - create_project_thread:799 - Step: Initializing project
+2025-01-02 08:37:41,671 - VenvCreator - INFO - create_project_thread:799 - Step: Creating directory structure
+2025-01-02 08:37:41,677 - VenvCreator - INFO - create_project_thread:799 - Step: Setting up virtual environment
+2025-01-02 08:38:23,018 - VenvCreator - INFO - create_project_thread:799 - Step: Configuring development tools
+2025-01-02 08:38:23,161 - VenvCreator - INFO - create_project_thread:799 - Step: Setting up version control
+2025-01-02 08:38:23,232 - VenvCreator - INFO - create_project_thread:799 - Step: Installing dependencies
+2025-01-02 08:38:23,294 - VenvCreator - INFO - create_project_thread:799 - Step: Finalizing project
+2025-01-02 08:38:23,300 - VenvCreator - INFO - create_project_thread:810 - Project created successfully
+2025-01-02 08:41:19,371 - VenvCreator - INFO - create_project_thread:799 - Step: Initializing project
+2025-01-02 08:41:19,387 - VenvCreator - INFO - create_project_thread:799 - Step: Creating directory structure
+2025-01-02 08:41:19,394 - VenvCreator - INFO - create_project_thread:799 - Step: Setting up virtual environment
+2025-01-02 08:41:54,019 - VenvCreator - INFO - create_project_thread:799 - Step: Configuring development tools
+2025-01-02 08:41:54,025 - VenvCreator - INFO - create_project_thread:799 - Step: Setting up version control
+2025-01-02 08:41:54,029 - VenvCreator - INFO - create_project_thread:799 - Step: Installing dependencies
+2025-01-02 08:41:54,034 - VenvCreator - INFO - create_project_thread:799 - Step: Finalizing project
+2025-01-02 08:41:54,038 - VenvCreator - INFO - create_project_thread:810 - Project created successfully
+2025-01-02 08:45:37,028 - VenvCreator - INFO - __init__:72 - Base directory: c:\_BC_Offline Programming Projects\Universal_Venv_maker2
+2025-01-02 08:45:37,042 - VenvCreator - INFO - load_file_structures:158 - File structures loaded successfully
+2025-01-02 08:45:37,131 - VenvCreator - DEBUG - generate_structure_preview:504 - Generated preview for Software Development:
+
+2025-01-02 08:45:37,141 - VenvCreator - DEBUG - on_structure_select:482 - Structure selected: Software Development
+2025-01-02 08:45:37,144 - VenvCreator - DEBUG - on_structure_select:483 - Preview text: 
+2025-01-02 08:45:37,146 - VenvCreator - DEBUG - create_structure_tab:454 - Structure tab created successfully
+2025-01-02 08:45:37,152 - VenvCreator - INFO - __init__:125 - Application initialized successfully
+2025-01-02 08:46:38,895 - VenvCreator - DEBUG - generate_structure_preview:504 - Generated preview for Development with PM:
+
+2025-01-02 08:46:38,897 - VenvCreator - DEBUG - on_structure_select:482 - Structure selected: Development with PM
+2025-01-02 08:46:38,897 - VenvCreator - DEBUG - on_structure_select:483 - Preview text: 
+2025-01-02 08:46:40,927 - VenvCreator - INFO - create_project_thread:798 - Step: Initializing project
+2025-01-02 08:46:40,931 - VenvCreator - INFO - create_project_thread:798 - Step: Creating directory structure
+2025-01-02 08:46:40,936 - VenvCreator - INFO - create_project_thread:798 - Step: Setting up virtual environment
+2025-01-02 08:47:12,139 - VenvCreator - INFO - create_project_thread:798 - Step: Configuring development tools
+2025-01-02 08:47:12,146 - VenvCreator - INFO - create_project_thread:798 - Step: Setting up version control
+2025-01-02 08:47:12,152 - VenvCreator - INFO - create_project_thread:798 - Step: Installing dependencies
+2025-01-02 08:47:12,160 - VenvCreator - INFO - create_project_thread:798 - Step: Finalizing project
+2025-01-02 08:47:12,164 - VenvCreator - INFO - create_project_thread:809 - Project created successfully

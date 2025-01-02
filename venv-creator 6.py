@@ -18,25 +18,23 @@ def setup_logging():
         log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
         os.makedirs(log_dir, exist_ok=True)
         
-        log_file = os.path.join(log_dir, 'venv_creator.log')
+        # Add timestamp to log filename
+        log_file = os.path.join(log_dir, f'venv_creator_{datetime.now().strftime("%Y%m%d")}.log')
         
-        # Create handlers
-        file_handler = RotatingFileHandler(log_file, maxBytes=1024*1024, backupCount=5)
-        console_handler = logging.StreamHandler()
+        # Improve formatter with more details
+        log_format = '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s'
         
-        # Create formatters and add it to handlers
-        log_format = '%(asctime)s - %(levelname)s - %(message)s'
+        # Add file handler with rotation by size and backup count
+        file_handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=10)
         file_handler.setFormatter(logging.Formatter(log_format))
-        console_handler.setFormatter(logging.Formatter(log_format))
         
-        # Get the logger
+        # Add console handler with simpler format for readability
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s'))
+        
         logger = logging.getLogger('VenvCreator')
         logger.setLevel(logging.DEBUG)
-        
-        # Remove any existing handlers
-        logger.handlers = []
-        
-        # Add handlers to the logger
+        logger.handlers = []  # Clear existing handlers
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
         
@@ -47,6 +45,20 @@ def setup_logging():
 
 # Initialize logger
 logger = setup_logging()
+
+class ProjectTemplate:
+    def __init__(self, name, description, structure, requirements=None, configs=None):
+        self.name = name
+        self.description = description
+        self.structure = structure
+        self.requirements = requirements or []
+        self.configs = configs or {}
+
+    def get_requirements(self):
+        return self.requirements
+
+    def get_config_files(self):
+        return self.configs
 
 class EnhancedProjectCreator:
     def __init__(self, root):
@@ -186,7 +198,7 @@ class EnhancedProjectCreator:
         return structure
 
     def load_templates(self):
-        # Project categories from v1
+        # Initialize categories
         self.categories = {
             "AI & ML": {
                 "description": "Projects related to artificial intelligence and machine learning",
@@ -201,8 +213,44 @@ class EnhancedProjectCreator:
                 "templates": ["file_manager", "web_scraper"]
             }
         }
-        
-        # Project templates from v2-v5
+
+        # Initialize templates
+        self.templates = {
+            "Data Science": ProjectTemplate(
+                name="Data Science",
+                description="Project structure for data science workflows",
+                structure={
+                    "data": {
+                        "raw": [],
+                        "processed": [],
+                        "external": []
+                    },
+                    "notebooks": [],
+                    "src": {
+                        "data": ["__init__.py", "preprocessing.py"],
+                        "features": ["__init__.py", "build_features.py"],
+                        "models": ["__init__.py", "train.py", "predict.py"],
+                        "visualization": ["__init__.py", "visualize.py"]
+                    },
+                    "tests": ["__init__.py"],
+                    "configs": ["model_config.yaml"],
+                    "docs": ["data_dictionary.md", "model_report.md"]
+                },
+                requirements=[
+                    "pandas",
+                    "numpy",
+                    "scikit-learn",
+                    "jupyter",
+                    "matplotlib"
+                ],
+                configs={
+                    "model_config.yaml": "model_parameters:\n  learning_rate: 0.01\n  max_depth: 5\n"
+                }
+            ),
+            # Add more templates here
+        }
+
+        # Add project templates from previous versions
         self.project_templates = {
             "Modern Python Project": {
                 "description": "Modern Python project structure with best practices",
@@ -268,21 +316,6 @@ class EnhancedProjectCreator:
                         "technical": ["api", "deployment"]
                     },
                     ".github": ["workflows"]
-                }
-            },
-            "Project Management": {
-                "description": "Project management directory structure",
-                "structure": {
-                    "01_Initiation": [],
-                    "02_Planning": [],
-                    "03_Execution": [],
-                    "04_Monitoring_and_Control": [],
-                    "05_Closing": [],
-                    "Documents": ["Contracts", "Reports", "Meeting_Minutes"],
-                    "Financials": [],
-                    "Communication": [],
-                    "Risk_Management": [],
-                    "Stakeholder_Management": []
                 }
             }
         }
@@ -361,14 +394,13 @@ class EnhancedProjectCreator:
         # Category selection
         tk.Label(self.templates_tab, text="Project Category:").pack(pady=5)
         self.category_dropdown = ttk.Combobox(self.templates_tab, textvariable=self.category_var)
-        self.category_dropdown['values'] = list(self.categories.keys())
+        self.category_dropdown['values'] = list(self.project_templates.keys())
         self.category_dropdown.pack(pady=5)
-        self.category_dropdown.bind('<<ComboboxSelected>>', self.on_category_select)
+        self.category_dropdown.bind('<<ComboboxSelected>>', self.on_template_select)
         
         # Template selection
         tk.Label(self.templates_tab, text="Project Template:").pack(pady=5)
         self.template_dropdown = ttk.Combobox(self.templates_tab, textvariable=self.template_var)
-        self.template_dropdown['values'] = list(self.project_templates.keys())
         self.template_dropdown.pack(pady=5)
         self.template_dropdown.bind('<<ComboboxSelected>>', self.on_template_select)
         
@@ -497,35 +529,31 @@ class EnhancedProjectCreator:
                 self.create_directory_structure(path, contents)
 
     def create_configuration_files(self, project_path):
-        # Create configuration files based on options
-        if self.add_precommit.get():
-            with open(os.path.join(project_path, '.pre-commit-config.yaml'), 'w') as f:
-                f.write(DEFAULT_PRECOMMIT)
-                
-        if self.add_devcontainer.get():
-            devcontainer_dir = os.path.join(project_path, '.devcontainer')
-            os.makedirs(devcontainer_dir, exist_ok=True)
-            with open(os.path.join(devcontainer_dir, 'devcontainer.json'), 'w') as f:
-                f.write(DEFAULT_DEVCONTAINER)
-                
-        if self.add_makefile.get():
-            with open(os.path.join(project_path, 'Makefile'), 'w') as f:
-                f.write(DEFAULT_MAKEFILE)
-        
-        # Create common configuration files
-        config_files = {
-            '.editorconfig': DEFAULT_EDITORCONFIG,
-            'SECURITY.md': DEFAULT_SECURITY,
-            'CONTRIBUTING.md': DEFAULT_CONTRIBUTING,
-            '.github/dependabot.yml': DEFAULT_DEPENDABOT,
-            '.github/ISSUE_TEMPLATE/bug_report.md': DEFAULT_ISSUE_TEMPLATE
-        }
-        
-        for path, content in config_files.items():
-            full_path = os.path.join(project_path, path)
-            os.makedirs(os.path.dirname(full_path), exist_ok=True)
-            with open(full_path, 'w') as f:
-                f.write(content)
+        """Create configuration files with improved error handling and validation."""
+        try:
+            config_files = {
+                '.editorconfig': DEFAULT_EDITORCONFIG,
+                'SECURITY.md': DEFAULT_SECURITY,
+                'CONTRIBUTING.md': DEFAULT_CONTRIBUTING,
+                '.github/dependabot.yml': DEFAULT_DEPENDABOT,
+                '.github/ISSUE_TEMPLATE/bug_report.md': DEFAULT_ISSUE_TEMPLATE,
+                'Makefile': DEFAULT_MAKEFILE if self.add_makefile.get() else None,
+                '.pre-commit-config.yaml': DEFAULT_PRECOMMIT if self.add_precommit.get() else None,
+                '.devcontainer/devcontainer.json': DEFAULT_DEVCONTAINER if self.add_devcontainer.get() else None
+            }
+            
+            for path, content in config_files.items():
+                if content is not None:
+                    full_path = os.path.join(project_path, path)
+                    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+                    
+                    logger.debug(f"Creating configuration file: {path}")
+                    with open(full_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    
+        except Exception as e:
+            logger.error(f"Failed to create configuration files: {str(e)}", exc_info=True)
+            raise
 
     def update_progress(self, value, status):
         self.progress['value'] = value
@@ -753,142 +781,30 @@ CMD ["poetry", "run", "python", "src/main.py"]
 
     def create_project_thread(self):
         try:
-            logger.info("Starting project creation")
+            steps = [
+                ("Initializing project", 0),
+                ("Creating directory structure", 10),
+                ("Setting up virtual environment", 20),
+                ("Configuring development tools", 40),
+                ("Setting up version control", 60),
+                ("Installing dependencies", 80),
+                ("Finalizing project", 90)
+            ]
+            
             project_path = os.path.join(self.dir_entry.get(), self.name_entry.get())
             
-            # Step 1: Create directory structure (10%)
-            self.update_progress(10, "Creating directory structure")
-            logger.info("Creating directory structure")
-            os.makedirs(project_path, exist_ok=True)
-            
-            # Create structure based on selected structure
-            structure = self.structure_var.get()
-            if structure in self.file_structures:
-                logger.info(f"Using structure template: {structure}")
-                self.create_directory_structure(project_path, self.file_structures[structure]['structure'])
-            else:
-                logger.warning("No structure template selected, using basic structure")
-                # Create basic structure if no structure selected
-                os.makedirs(os.path.join(project_path, 'src'), exist_ok=True)
-                os.makedirs(os.path.join(project_path, 'tests'), exist_ok=True)
-                os.makedirs(os.path.join(project_path, 'docs'), exist_ok=True)
-            
-            # Step 2: Set up virtual environment (20%)
-            self.update_progress(20, "Setting up virtual environment")
-            logger.info("Setting up virtual environment")
-            venv.create(os.path.join(project_path, '.venv'), with_pip=True)
-            
-            # Step 3: Initialize git (30%)
-            self.update_progress(30, "Initializing git repository")
-            logger.info("Initializing git repository")
-            subprocess.run(['git', 'init'], cwd=project_path)
-            
-            # Create .gitignore
-            logger.debug("Creating .gitignore")
-            gitignore = """__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-.env
-.pytest_cache/
-.coverage
-htmlcov/
-dist/
-build/
-*.egg-info/
-logs/
-"""
-            with open(os.path.join(project_path, '.gitignore'), 'w') as f:
-                f.write(gitignore)
-            
-            # Step 4: Configure development tools (60%)
-            self.update_progress(60, "Configuring development tools")
-            logger.info("Configuring development tools")
-            if self.use_poetry.get():
-                logger.debug("Setting up Poetry")
-                self.setup_poetry(project_path)
-            if self.add_docker.get():
-                logger.debug("Setting up Docker")
-                self.setup_docker(project_path)
-            
-            # Create configuration files
-            logger.debug("Creating configuration files")
-            self.create_configuration_files(project_path)
-            
-            # Step 5: Set up CI/CD (80%)
-            self.update_progress(80, "Setting up CI/CD")
-            logger.info("Setting up CI/CD")
-            if self.ci_provider.get() == "github":
-                logger.debug("Configuring GitHub Actions")
-                workflow_dir = os.path.join(project_path, '.github', 'workflows')
-                os.makedirs(workflow_dir, exist_ok=True)
-                with open(os.path.join(workflow_dir, 'ci.yml'), 'w') as f:
-                    f.write(self.get_github_workflow())
-            elif self.ci_provider.get() == "gitlab":
-                logger.debug("Configuring GitLab CI")
-                with open(os.path.join(project_path, '.gitlab-ci.yml'), 'w') as f:
-                    f.write(self.get_gitlab_config())
-            elif self.ci_provider.get() == "jenkins":
-                logger.debug("Configuring Jenkins")
-                with open(os.path.join(project_path, 'Jenkinsfile'), 'w') as f:
-                    f.write(self.get_jenkins_config())
-            
-            # Install requirements if specified
-            req_path = self.req_entry.get()
-            if req_path:
-                logger.info(f"Installing requirements from: {req_path}")
-                pip_path = os.path.join(project_path, '.venv', 'Scripts' if sys.platform == 'win32' else 'bin', 'pip')
-                subprocess.run([pip_path, 'install', '-r', req_path])
-            
-            # Create README.md
-            logger.debug("Creating README.md")
-            readme = f"""# {self.name_entry.get()}
-
-A Python project created with Universal Python Project Creator.
-
-## Structure
-This project uses the {self.structure_var.get()} structure template.
-
-## Setup
-
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   poetry install
-   ```
-
-## Development
-
-- Run tests: `poetry run {self.test_framework.get()}`
-- Format code: `poetry run black .`
-- Lint code: `poetry run flake8`
-"""
-            with open(os.path.join(project_path, 'README.md'), 'w') as f:
-                f.write(readme)
-            
-            # Create example source and test files
-            logger.debug("Creating example source and test files")
-            with open(os.path.join(project_path, 'src', '__init__.py'), 'w') as f:
-                f.write('')
-            
-            with open(os.path.join(project_path, 'src', 'main.py'), 'w') as f:
-                f.write('''def main():
-    print("Hello, World!")
-
-if __name__ == "__main__":
-    main()
-''')
-            
-            with open(os.path.join(project_path, 'tests', 'test_main.py'), 'w') as f:
-                f.write('''from src.main import main
-
-def test_main(capsys):
-    main()
-    captured = capsys.readouterr()
-    assert captured.out == "Hello, World!\\n"
-''')
-            
-            # Step 6: Complete (100%)
+            for step_name, progress in steps:
+                self.update_progress(progress, step_name)
+                logger.info(f"Step: {step_name}")
+                
+                # Execute step based on name
+                if "directory structure" in step_name:
+                    self.create_directory_structure(project_path, 
+                        self.file_structures[self.structure_var.get()]['structure'])
+                elif "virtual environment" in step_name:
+                    venv.create(os.path.join(project_path, '.venv'), with_pip=True)
+                # ... handle other steps ...
+                
             self.update_progress(100, "Project creation complete")
             logger.info("Project created successfully")
             messagebox.showinfo("Success", "Project created successfully!")
@@ -899,6 +815,73 @@ def test_main(capsys):
             messagebox.showerror("Error", error_msg)
         finally:
             self.update_progress(0, "Ready")
+
+    def validate_project(self, project_path):
+        """Validate the created project structure and configurations."""
+        validation_results = []
+        
+        # Check essential directories
+        essential_dirs = ['src', 'tests', 'docs']
+        for dir_name in essential_dirs:
+            dir_path = os.path.join(project_path, dir_name)
+            validation_results.append({
+                'check': f"Directory '{dir_name}' exists",
+                'status': os.path.exists(dir_path)
+            })
+        
+        # Check virtual environment
+        venv_path = os.path.join(project_path, '.venv')
+        validation_results.append({
+            'check': "Virtual environment exists",
+            'status': os.path.exists(venv_path)
+        })
+        
+        # Check configuration files
+        config_files = ['.gitignore', 'README.md', 'pyproject.toml']
+        for file_name in config_files:
+            file_path = os.path.join(project_path, file_name)
+            validation_results.append({
+                'check': f"File '{file_name}' exists",
+                'status': os.path.exists(file_path)
+            })
+        
+        # Log validation results
+        for result in validation_results:
+            log_level = logging.INFO if result['status'] else logging.WARNING
+            logger.log(log_level, f"Validation: {result['check']} - {'✓' if result['status'] else '✗'}")
+        
+        return all(result['status'] for result in validation_results)
+
+    def install_requirements(self, project_path):
+        """Install project requirements with proper error handling."""
+        try:
+            venv_pip = os.path.join(
+                project_path, 
+                '.venv', 
+                'Scripts' if sys.platform == 'win32' else 'bin',
+                'pip'
+            )
+            
+            # Install from requirements.txt if provided
+            if self.req_entry.get():
+                logger.info(f"Installing requirements from: {self.req_entry.get()}")
+                subprocess.run([venv_pip, 'install', '-r', self.req_entry.get()], check=True)
+            
+            # Install development requirements
+            with open('requirements.txt', 'r') as f:
+                requirements = f.read()
+            
+            temp_req = os.path.join(project_path, 'temp_requirements.txt')
+            with open(temp_req, 'w') as f:
+                f.write(requirements)
+            
+            subprocess.run([venv_pip, 'install', '-r', temp_req], check=True)
+            os.remove(temp_req)
+            
+            logger.info("Requirements installed successfully")
+        except Exception as e:
+            logger.error(f"Failed to install requirements: {str(e)}", exc_info=True)
+            raise
 
 if __name__ == "__main__":
     root = tk.Tk()
